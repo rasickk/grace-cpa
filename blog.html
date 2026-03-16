@@ -3,189 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog – Grace CPA, PSC</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <title>Blog &amp; Resources – Grace CPA, PSC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950:'#060d1a', DEFAULT:'#0f1f3d', mid:'#1a3a6b', light:'#2a5298' },
+            gold: { DEFAULT:'#c9a03e', light:'#e8c96a', pale:'#fdf6e3' },
+          },
+          fontFamily: {
+            sans: ['Inter','system-ui','sans-serif'],
+            serif: ['"Playfair Display"','Georgia','serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
-    .blog-card { background: #fff; border: 1px solid #dde3ec; border-radius: 6px; overflow: hidden; transition: box-shadow .2s; }
-    .blog-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-    .blog-card-image { background: #eef1f7; height: 180px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 13px; }
-    .blog-card-body { padding: 24px; }
-    .blog-card-meta { font-size: 12px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
-    .blog-card h3 { color: #1a3c6e; font-size: 1.05rem; margin-bottom: 10px; }
-    .blog-card p { font-size: .9rem; color: #555; margin-bottom: 14px; }
-    .blog-card a.read-more { font-size: .88rem; font-weight: 700; color: #c8a951; }
-    .blog-card a.read-more:hover { color: #1a3c6e; }
+    html { scroll-behavior: smooth; }
+    .text-gold-gradient { background: linear-gradient(135deg,#c9a03e,#e8c96a,#c9a03e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    [x-cloak] { display:none!important; }
   </style>
 </head>
-<body>
+<body class="font-sans text-slate-700 bg-white antialiased">
 
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
-      <span>
-        <a href="tel:5026181677">(502) 618-1677</a> &nbsp;|&nbsp;
-        <a href="tel:8595396306">(859) 539-6306</a>
-      </span>
-    </div>
-  </div>
+  <!-- Header injected by components.js -->
+  <div id="site-header"></div>
 
-  <header id="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <a href="index.html"><span class="logo-text">Grace <span class="logo-accent">CPA</span>, PSC</span></a>
-      </div>
-      <nav id="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="has-dropdown">
-            <a href="#">Services ▾</a>
-            <ul class="dropdown">
-              <li><strong>Accounting</strong></li>
-              <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-              <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
-              <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
-              <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
-              <li><a href="services/outsourced-bookkeeping.html">Outsourced Accounting &amp; Bookkeeping</a></li>
-              <li><a href="services/payroll.html">Payroll Services</a></li>
-              <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
-              <li><strong>Tax</strong></li>
-              <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-              <li><a href="services/tax-planning.html">Tax Planning</a></li>
-            </ul>
-          </li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-          <li><a href="blog.html" class="active">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
-    </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h1>Blog &amp; Resources</h1>
-      <p>Tax tips, accounting insights, and financial guidance from the Grace CPA team.</p>
+  <!-- PAGE HERO -->
+  <section class="relative overflow-hidden py-20 text-center" style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 100%)">
+    <div class="relative z-10 max-w-3xl mx-auto px-6">
+      <div class="text-xs font-bold tracking-widest uppercase mb-3" style="color:#c9a03e">Insights &amp; Guidance</div>
+      <h1 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-3">Blog &amp; Resources</h1>
+      <p class="text-slate-300 text-base">Tax tips, accounting insights, and financial guidance from the Grace CPA team.</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="blog-grid">
-        <!-- Sample blog posts — replace or add more as needed -->
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Tax Planning &bull; January 2024</div>
-            <h3>5 Year-End Tax Strategies Every Small Business Owner Should Know</h3>
-            <p>As the year closes, there are smart moves you can make to reduce your tax bill. Here are five strategies to consider before December 31st.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+  <!-- MAIN CONTENT -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Post 1 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#0f1f3d,#1a3a6b)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Tax Planning</span>
           </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Bookkeeping &bull; February 2024</div>
-            <h3>Why Clean Books Are the Foundation of a Healthy Business</h3>
-            <p>Messy financials don't just cause stress at tax time — they can cost you real money. Here's why accurate bookkeeping matters year-round.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">January 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">5 Year-End Tax Strategies Every Small Business Owner Should Know</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Year-end is the perfect time to review your tax position. Here are five proven strategies that can help reduce your tax bill before the calendar turns.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
           </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Business Formation &bull; March 2024</div>
-            <h3>LLC vs. S-Corp: Which Business Structure Is Right for You?</h3>
-            <p>Choosing the right entity type affects your taxes, liability, and flexibility. We break down the key differences to help you decide.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="80">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#1a3a6b,#2a5298)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Bookkeeping</span>
           </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Payroll &bull; April 2024</div>
-            <h3>Common Payroll Mistakes and How to Avoid Them</h3>
-            <p>Payroll errors can trigger IRS penalties and damage employee trust. Learn the most common mistakes — and how to prevent them.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">February 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">Why Clean Books Are the Foundation of a Healthy Business</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Accurate, up-to-date books don't just keep the IRS happy — they give you the clarity to make better decisions and grow with confidence.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
           </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Cloud Accounting &bull; May 2024</div>
-            <h3>Is QuickBooks Online Right for Your Business?</h3>
-            <p>Cloud-based accounting has never been more accessible. Find out if QuickBooks Online is a good fit and how to make the switch smoothly.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="160">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#0f1f3d,#2a5298)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Business Formation</span>
           </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image">Blog Image</div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">Real Estate &bull; June 2024</div>
-            <h3>Tax Benefits of Real Estate Investing You May Be Missing</h3>
-            <p>Real estate offers some of the best tax advantages available — but only if you know how to use them. Here's what every investor should know.</p>
-            <a href="contact.html" class="read-more">Read More →</a>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">March 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">LLC vs. S-Corp: Which Business Structure Is Right for You?</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Choosing the right entity type can save you thousands in taxes each year. We break down the key differences and how to decide what's best for your business.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
           </div>
-        </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#1a3a6b,#0f1f3d)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Payroll</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">April 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">Common Payroll Mistakes and How to Avoid Them</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Payroll errors can be costly — in penalties, employee relations, and time. Learn the most common mistakes business owners make and how to prevent them.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="80">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#2a5298,#1a3a6b)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Cloud Accounting</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">May 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">Is QuickBooks Online Right for Your Business?</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">QuickBooks Online is a powerful tool for small businesses — but it's not for everyone. Here's what you need to know before you sign up or switch platforms.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="160">
+          <div class="h-40 flex items-end p-5" style="background:linear-gradient(135deg,#0f1f3d,#1a3a6b)">
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(201,160,62,.2);color:#e8c96a">Real Estate</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-slate-400 mb-2">June 2024</p>
+            <h3 class="font-serif text-base font-bold mb-3 leading-snug" style="color:#0f1f3d">Tax Benefits of Real Estate Investing You May Be Missing</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Real estate investors enjoy some of the most powerful tax advantages available — but only if they know how to use them. We cover depreciation, cost segregation, and more.</p>
+            <a href="#" class="text-sm font-semibold hover:underline" style="color:#c9a03e">Read More →</a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <section class="section cta-banner">
-    <div class="container center">
-      <h2>Have a Tax or Accounting Question?</h2>
-      <p>Our team is here to help. Reach out today for a consultation.</p>
-      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+  <!-- CTA Section -->
+  <section class="py-20 text-center" style="background:#0f1f3d">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
+      <p class="text-slate-400 mb-8">Contact Grace CPA, PSC today for a no-obligation consultation.</p>
+      <a href="./contact.html" class="inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-lg" style="background:#c9a03e;color:#0f1f3d">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Schedule Free Consultation
+      </a>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h4>Grace CPA, PSC</h4>
-        <p>3940 Bardstown Road<br>Suite 1B<br>Louisville, KY 40218</p>
-        <p><a href="tel:5026181677">(502) 618-1677</a><br><a href="tel:8595396306">(859) 539-6306</a></p>
-        <p><a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a></p>
-        <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-          <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-          <li><a href="services/tax-planning.html">Tax Planning</a></li>
-          <li><a href="services/payroll.html">Payroll Services</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Industries</h4>
-        <ul>
-          <li><a href="industries/hospitality.html">Hospitality</a></li>
-          <li><a href="industries/manufacturing.html">Manufacturing</a></li>
-          <li><a href="industries/medical-practice.html">Medical Practice</a></li>
-          <li><a href="industries/real-estate.html">Real Estate</a></li>
-          <li><a href="industries/technology.html">Technology</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</p>
-    </div>
-  </footer>
+  <!-- Footer injected by components.js -->
+  <div id="site-footer"></div>
 
-  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script>
+    window.SITE_BASE = './';
+    window.SITE_PAGE = 'blog';
+  </script>
+  <script src="./components.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      if (window.lucide) lucide.createIcons();
+      AOS.init({ once: true, offset: 60, duration: 650 });
+    });
+  </script>
 </body>
 </html>

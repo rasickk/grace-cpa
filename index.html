@@ -1,360 +1,950 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="{ mobileOpen: false }" @click.outside="mobileOpen = false">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grace CPA, PSC – CPA Firm in Louisville, KY</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
-</head>
-<body>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>&#128344; Mon–Fri: 9:00 AM – 5:00 PM</span>
-      <span>
-        &#128222;
-        <a href="tel:5026181677">(502) 618-1677</a> &nbsp;|&nbsp;
-        <a href="tel:8595396306">(859) 539-6306</a>
-        &nbsp;&nbsp;&#9993;&nbsp;
-        <a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { 950:'#060d1a', DEFAULT:'#0f1f3d', mid:'#1a3a6b', light:'#2a5298' },
+            gold:  { DEFAULT:'#c9a03e', light:'#e8c96a', pale:'#fdf6e3' },
+          },
+          fontFamily: {
+            sans:  ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            'card': '0 4px 24px rgba(15,31,61,.08)',
+            'card-hover': '0 12px 40px rgba(15,31,61,.15)',
+            'gold': '0 6px 24px rgba(201,160,62,.35)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Hero grid pattern */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(201,160,62,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,160,62,.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Gold gradient text */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #c9a03e 0%, #e8c96a 50%, #c9a03e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Swiper custom */
+    .swiper-pagination-bullet { background: #c9a03e; }
+    .swiper-pagination-bullet-active { background: #0f1f3d; }
+
+    /* Animated underline nav */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: #c9a03e;
+      transform: scaleX(0);
+      transition: transform .22s ease;
+      border-radius: 1px;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+    /* Card hover lift */
+    .service-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .service-card:hover { transform: translateY(-6px); }
+
+    /* Step connector line */
+    .step-line::after {
+      content: '';
+      position: absolute;
+      top: 28px; left: calc(50% + 36px);
+      width: calc(100% - 72px);
+      height: 2px;
+      background: linear-gradient(90deg, #c9a03e, rgba(201,160,62,.2));
+      border-radius: 1px;
+    }
+    .step-line:last-child::after { display: none; }
+
+    /* Scroll to top */
+    #scroll-top { transition: opacity .3s, transform .3s; }
+    #scroll-top.show { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+    /* Glassmorphism card */
+    .glass {
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-slate-700 bg-white antialiased">
+
+<!-- ========== TOP BAR ========== -->
+<div class="bg-navy-950 text-slate-400 text-xs py-2 hidden sm:block">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center gap-2 flex-wrap">
+    <span class="flex items-center gap-1.5">
+      <i data-lucide="clock" class="w-3.5 h-3.5 text-gold opacity-70"></i>
+      Mon–Fri: 9:00 AM – 5:00 PM
+    </span>
+    <div class="flex items-center gap-5">
+      <a href="tel:5026181677" class="flex items-center gap-1.5 hover:text-gold-light transition-colors">
+        <i data-lucide="phone" class="w-3.5 h-3.5 text-gold opacity-70"></i>(502) 618-1677
+      </a>
+      <span class="opacity-20">|</span>
+      <a href="tel:8595396306" class="hover:text-gold-light transition-colors">(859) 539-6306</a>
+      <span class="opacity-20">|</span>
+      <a href="mailto:dtiwari@grace-cpa.com" class="flex items-center gap-1.5 hover:text-gold-light transition-colors">
+        <i data-lucide="mail" class="w-3.5 h-3.5 text-gold opacity-70"></i>dtiwari@grace-cpa.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header
+  class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-gold shadow-sm"
+  x-data="{ servicesOpen: false, industriesOpen: false }"
+  @click.outside="servicesOpen = false; industriesOpen = false"
+>
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-6 py-3">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex-shrink-0">
+      <div class="font-serif text-navy text-xl font-bold leading-tight">
+        Grace <span class="text-gold">CPA</span>, PSC
+      </div>
+      <div class="text-[10px] font-semibold tracking-widest uppercase text-slate-400 mt-0.5">
+        Louisville, KY · Certified Public Accountants
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-1">
+
+      <a href="index.html" class="nav-link active px-3 py-2 text-sm font-semibold text-navy hover:text-navy transition-colors">Home</a>
+      <a href="about.html" class="nav-link px-3 py-2 text-sm font-semibold text-slate-600 hover:text-navy transition-colors">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative" @mouseenter="servicesOpen = true" @mouseleave="servicesOpen = false">
+        <button class="nav-link flex items-center gap-1 px-3 py-2 text-sm font-semibold text-slate-600 hover:text-navy transition-colors cursor-pointer">
+          Services
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="servicesOpen ? 'rotate-180' : ''"></i>
+        </button>
+        <div
+          x-show="servicesOpen"
+          x-transition:enter="transition ease-out duration-150"
+          x-transition:enter-start="opacity-0 -translate-y-2"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-100"
+          x-transition:leave-start="opacity-100 translate-y-0"
+          x-transition:leave-end="opacity-0 -translate-y-2"
+          class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-card-hover border border-slate-100 border-t-2 border-t-gold overflow-hidden z-50"
+          x-cloak
+        >
+          <div class="px-4 py-2 text-[10px] font-bold tracking-widest uppercase text-gold border-b border-slate-50">Accounting</div>
+          <a href="services/small-business-accounting.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Small Business Accounting</a>
+          <a href="services/business-consulting.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Business &amp; Financial Consulting</a>
+          <a href="services/cloud-accounting.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Cloud Accounting Solutions</a>
+          <a href="services/business-incorporation.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Business Incorporation</a>
+          <a href="services/outsourced-bookkeeping.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Outsourced Bookkeeping</a>
+          <a href="services/payroll.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Payroll Services</a>
+          <a href="services/quickbooks.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">QuickBooks Setup &amp; Support</a>
+          <div class="px-4 py-2 text-[10px] font-bold tracking-widest uppercase text-gold border-t border-b border-slate-50 mt-1">Tax</div>
+          <a href="services/tax-preparation.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">Tax Preparation</a>
+          <a href="services/tax-planning.html" class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all pb-3">Tax Planning</a>
+        </div>
+      </div>
+
+      <!-- Industries Dropdown -->
+      <div class="relative" @mouseenter="industriesOpen = true" @mouseleave="industriesOpen = false">
+        <button class="nav-link flex items-center gap-1 px-3 py-2 text-sm font-semibold text-slate-600 hover:text-navy transition-colors cursor-pointer">
+          Industries
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="industriesOpen ? 'rotate-180' : ''"></i>
+        </button>
+        <div
+          x-show="industriesOpen"
+          x-transition:enter="transition ease-out duration-150"
+          x-transition:enter-start="opacity-0 -translate-y-2"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-100"
+          x-transition:leave-start="opacity-100 translate-y-0"
+          x-transition:leave-end="opacity-0 -translate-y-2"
+          class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-card-hover border border-slate-100 border-t-2 border-t-gold overflow-hidden z-50"
+          x-cloak
+        >
+          <a href="industries/hospitality.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">🍽 Hospitality</a>
+          <a href="industries/manufacturing.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">⚙️ Manufacturing</a>
+          <a href="industries/medical-practice.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">🏥 Medical Practice</a>
+          <a href="industries/oil-gas.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">⛽ Oil &amp; Gas</a>
+          <a href="industries/real-estate.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all">🏠 Real Estate</a>
+          <a href="industries/technology.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-navy hover:pl-5 transition-all pb-2">💻 Technology</a>
+        </div>
+      </div>
+
+      <a href="service-areas.html" class="nav-link px-3 py-2 text-sm font-semibold text-slate-600 hover:text-navy transition-colors">Service Areas</a>
+      <a href="blog.html" class="nav-link px-3 py-2 text-sm font-semibold text-slate-600 hover:text-navy transition-colors">Blog</a>
+
+      <a href="contact.html" class="ml-2 inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-navy font-bold text-sm px-5 py-2.5 rounded-lg shadow-gold hover:shadow-none transition-all duration-200 hover:-translate-y-0.5">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Free Consultation
+      </a>
+    </nav>
+
+    <!-- Mobile toggle -->
+    <button
+      class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-navy hover:border-gold transition-colors"
+      @click.stop="mobileOpen = !mobileOpen"
+    >
+      <i data-lucide="menu" class="w-5 h-5" x-show="!mobileOpen"></i>
+      <i data-lucide="x" class="w-5 h-5" x-show="mobileOpen" x-cloak></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    x-show="mobileOpen"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="lg:hidden border-t border-slate-100 bg-white px-6 pb-6 max-h-[80vh] overflow-y-auto"
+    x-cloak
+  >
+    <div class="pt-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2.5 rounded-lg text-navy font-semibold text-sm bg-slate-50">Home</a>
+      <a href="about.html" class="block px-3 py-2.5 rounded-lg text-slate-600 font-semibold text-sm hover:bg-slate-50 hover:text-navy transition-colors">About</a>
+      <div class="px-3 pt-3 pb-1 text-[10px] font-bold tracking-widest uppercase text-gold">Accounting Services</div>
+      <a href="services/small-business-accounting.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Small Business Accounting</a>
+      <a href="services/business-consulting.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Business &amp; Financial Consulting</a>
+      <a href="services/cloud-accounting.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Cloud Accounting Solutions</a>
+      <a href="services/business-incorporation.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Business Incorporation</a>
+      <a href="services/outsourced-bookkeeping.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Outsourced Bookkeeping</a>
+      <a href="services/payroll.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Payroll Services</a>
+      <a href="services/quickbooks.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">QuickBooks Setup &amp; Support</a>
+      <div class="px-3 pt-3 pb-1 text-[10px] font-bold tracking-widest uppercase text-gold">Tax Services</div>
+      <a href="services/tax-preparation.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Tax Preparation</a>
+      <a href="services/tax-planning.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Tax Planning</a>
+      <div class="px-3 pt-3 pb-1 text-[10px] font-bold tracking-widest uppercase text-gold">Industries</div>
+      <a href="industries/hospitality.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Hospitality</a>
+      <a href="industries/manufacturing.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Manufacturing</a>
+      <a href="industries/medical-practice.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Medical Practice</a>
+      <a href="industries/real-estate.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Real Estate</a>
+      <a href="industries/technology.html" class="block px-4 py-2 text-sm text-slate-600 hover:text-navy transition-colors">Technology</a>
+      <div class="pt-4 border-t border-slate-100 mt-3">
+        <a href="service-areas.html" class="block px-3 py-2.5 text-slate-600 font-semibold text-sm hover:text-navy">Service Areas</a>
+        <a href="blog.html" class="block px-3 py-2.5 text-slate-600 font-semibold text-sm hover:text-navy">Blog</a>
+        <a href="contact.html" class="mt-3 flex items-center justify-center gap-2 bg-gold text-navy font-bold text-sm px-5 py-3 rounded-lg">
+          <i data-lucide="calendar" class="w-4 h-4"></i> Free Consultation
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ========== HERO ========== -->
+<section class="relative bg-navy hero-grid overflow-hidden min-h-[620px] flex items-center">
+
+  <!-- Glow orbs -->
+  <div class="absolute top-[-80px] right-[-80px] w-[480px] h-[480px] rounded-full bg-navy-light/20 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-[-60px] left-[10%] w-[320px] h-[320px] rounded-full bg-gold/8 blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center w-full">
+
+    <!-- Left: Copy -->
+    <div data-aos="fade-right" data-aos-duration="700">
+      <div class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 text-gold-light text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
+        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+        Louisville's Trusted CPA Firm
+      </div>
+      <h1 class="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.15] mb-6">
+        Maximize Savings.<br>
+        <span class="text-gold-gradient">Minimize Stress.</span>
+      </h1>
+      <p class="text-slate-300 text-lg leading-relaxed mb-8 max-w-lg">
+        From proactive tax planning to full-service bookkeeping, Grace CPA, PSC delivers personalized financial strategies that keep more money in your pocket.
+      </p>
+
+      <div class="flex flex-wrap gap-4 mb-10">
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-navy font-bold px-7 py-3.5 rounded-lg shadow-gold hover:shadow-none transition-all hover:-translate-y-0.5 text-sm">
+          <i data-lucide="calendar" class="w-4 h-4"></i> Get a Free Consultation
+        </a>
+        <a href="services/tax-planning.html" class="inline-flex items-center gap-2 text-white border border-white/25 hover:border-white/60 hover:bg-white/10 font-semibold px-7 py-3.5 rounded-lg transition-all text-sm">
+          Explore Tax Planning <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-5 text-xs text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> No-Obligation Consultation</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> Response Within 24 Hours</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> 10+ Years Experience</span>
+      </div>
+    </div>
+
+    <!-- Right: Floating Cards -->
+    <div class="hidden lg:flex flex-col gap-4" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="trending-down" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-lg leading-tight">Commitment to Lowering Taxes</div>
+          <div class="text-slate-400 text-sm mt-1">Proactive strategies that legally minimize your tax burden year-round.</div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="shield-check" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-lg leading-tight">Error-Free Tax Preparation</div>
+          <div class="text-slate-400 text-sm mt-1">Every return reviewed for accuracy, compliance, and maximum deductions.</div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="headphones" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div>
+          <div class="text-white font-bold text-lg leading-tight">Unparalleled Support</div>
+          <div class="text-slate-400 text-sm mt-1">A responsive team that picks up the phone and responds promptly.</div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 flex items-center justify-between">
+        <div>
+          <div class="text-gold text-xs font-bold uppercase tracking-widest mb-1">Call Us Today</div>
+          <a href="tel:5026181677" class="text-white font-bold text-xl hover:text-gold-light transition-colors">(502) 618-1677</a>
+        </div>
+        <a href="tel:5026181677" class="w-12 h-12 rounded-full bg-gold hover:bg-gold-light flex items-center justify-center shadow-gold transition-colors">
+          <i data-lucide="phone" class="w-5 h-5 text-navy"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== STATS BAR ========== -->
+<div class="bg-navy-mid border-b-2 border-gold">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+      <div class="text-center py-7 px-4">
+        <div class="font-serif text-3xl font-bold text-gold-light" data-countup="10" data-suffix="+">10+</div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/50 mt-1.5">Years of Experience</div>
+      </div>
+      <div class="text-center py-7 px-4">
+        <div class="font-serif text-3xl font-bold text-gold-light" data-countup="500" data-suffix="+">500+</div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/50 mt-1.5">Clients Served</div>
+      </div>
+      <div class="text-center py-7 px-4">
+        <div class="font-serif text-3xl font-bold text-gold-light" data-countup="9" data-suffix="">9</div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/50 mt-1.5">Core Services</div>
+      </div>
+      <div class="text-center py-7 px-4">
+        <div class="font-serif text-3xl font-bold text-gold-light" data-countup="98" data-suffix="%">98%</div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/50 mt-1.5">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== INTRO ========== -->
+<section class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center" data-aos="fade-up">
+    <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+      <div class="w-8 h-px bg-gold"></div> Our Philosophy <div class="w-8 h-px bg-gold"></div>
+    </div>
+    <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold leading-tight mb-5">
+      A CPA Firm That Actually Listens
+    </h2>
+    <p class="text-slate-500 text-lg leading-relaxed">
+      At Grace CPA, PSC, listening is the foundation of our business. We take the time to get to know our clients so we can find practical ways to meet their accounting and tax needs, understand their struggles, and help them achieve their financial goals.
+    </p>
+  </div>
+</section>
+
+
+<!-- ========== SERVICES ========== -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> What We Offer <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold mb-3">Our Services</h2>
+      <p class="text-slate-500 max-w-xl mx-auto">Comprehensive accounting and tax solutions tailored to your unique situation.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <a href="services/small-business-accounting.html" class="service-card bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover border border-transparent hover:border-gold/30 group block" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 group-hover:bg-gold flex items-center justify-center mb-5 transition-colors">
+          <i data-lucide="bar-chart-3" class="w-5 h-5 text-gold group-hover:text-navy transition-colors"></i>
+        </div>
+        <h3 class="font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">Small Business Accounting</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-4">Comprehensive accounting for businesses at every stage of growth.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+      <a href="services/business-consulting.html" class="service-card bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover border border-transparent hover:border-gold/30 group block" data-aos="fade-up" data-aos-delay="60">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 group-hover:bg-gold flex items-center justify-center mb-5 transition-colors">
+          <i data-lucide="briefcase" class="w-5 h-5 text-gold group-hover:text-navy transition-colors"></i>
+        </div>
+        <h3 class="font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">Business &amp; Financial Consulting</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-4">Strategic guidance to help you make informed decisions with confidence.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+      <a href="services/cloud-accounting.html" class="service-card bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover border border-transparent hover:border-gold/30 group block" data-aos="fade-up" data-aos-delay="120">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 group-hover:bg-gold flex items-center justify-center mb-5 transition-colors">
+          <i data-lucide="cloud" class="w-5 h-5 text-gold group-hover:text-navy transition-colors"></i>
+        </div>
+        <h3 class="font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">Cloud Accounting Solutions</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-4">Real-time financial visibility through modern cloud-based platforms.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+      <a href="services/outsourced-bookkeeping.html" class="service-card bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover border border-transparent hover:border-gold/30 group block" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 group-hover:bg-gold flex items-center justify-center mb-5 transition-colors">
+          <i data-lucide="book-open" class="w-5 h-5 text-gold group-hover:text-navy transition-colors"></i>
+        </div>
+        <h3 class="font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">Outsourced Bookkeeping</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-4">Reliable, accurate bookkeeping so you can focus on your business.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+      <a href="services/payroll.html" class="service-card bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover border border-transparent hover:border-gold/30 group block" data-aos="fade-up" data-aos-delay="60">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 group-hover:bg-gold flex items-center justify-center mb-5 transition-colors">
+          <i data-lucide="credit-card" class="w-5 h-5 text-gold group-hover:text-navy transition-colors"></i>
+        </div>
+        <h3 class="font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">Payroll Services</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-4">Timely, accurate payroll processing and full compliance management.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+      <a href="services/tax-planning.html" class="service-card bg-navy rounded-2xl p-7 shadow-card hover:shadow-card-hover group block" data-aos="fade-up" data-aos-delay="120">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <i data-lucide="target" class="w-5 h-5 text-gold"></i>
+        </div>
+        <h3 class="font-bold text-white text-base mb-2">Tax Planning &amp; Preparation</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">Forward-looking strategies that keep more of your hard-earned money.</p>
+        <span class="text-xs font-bold text-gold flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== ABOUT ========== -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Visual panel -->
+    <div class="relative" data-aos="fade-right">
+      <div class="bg-slate-100 rounded-3xl h-[400px] flex items-center justify-center text-slate-400 overflow-hidden relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-12 h-12 text-slate-300"></i>
+          <span class="text-sm text-slate-400">Add your team photo here</span>
+          <code class="text-xs text-slate-300 bg-white/60 px-3 py-1 rounded-full">images/team.jpg</code>
+        </div>
+      </div>
+      <!-- Floating badge -->
+      <div class="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-card-hover p-5 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-gold/15 flex items-center justify-center">
+          <i data-lucide="award" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div>
+          <div class="font-bold text-navy text-sm">Certified Public</div>
+          <div class="text-slate-400 text-xs">Accountants · Louisville, KY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div data-aos="fade-left" data-aos-delay="100">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> About Our Firm
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold leading-tight mb-5">
+        Built on Relationships, Driven by Results
+      </h2>
+      <p class="text-slate-500 leading-relaxed mb-4">
+        From startups and entrepreneurs to established enterprises, we provide quality accounting services and strategic tax planning to all types of businesses. We also offer prompt and accurate income tax preparation for business owners and individuals.
+      </p>
+      <p class="text-slate-500 leading-relaxed mb-7">
+        Our firm serves clients in Louisville, Lexington, Jeffersonville, Northern Kentucky, and surrounding regions.
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-center gap-3 text-sm text-slate-600">
+          <div class="w-5 h-5 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="check" class="w-3 h-3 text-gold"></i>
+          </div>
+          Personalized service for every client — no cookie-cutter approaches
+        </li>
+        <li class="flex items-center gap-3 text-sm text-slate-600">
+          <div class="w-5 h-5 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="check" class="w-3 h-3 text-gold"></i>
+          </div>
+          Proactive tax strategies that save you money throughout the year
+        </li>
+        <li class="flex items-center gap-3 text-sm text-slate-600">
+          <div class="w-5 h-5 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="check" class="w-3 h-3 text-gold"></i>
+          </div>
+          Experienced team with deep Louisville-area business knowledge
+        </li>
+        <li class="flex items-center gap-3 text-sm text-slate-600">
+          <div class="w-5 h-5 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="check" class="w-3 h-3 text-gold"></i>
+          </div>
+          Available year-round, not just during tax season
+        </li>
+      </ul>
+      <a href="about.html" class="inline-flex items-center gap-2 bg-navy hover:bg-navy-mid text-white font-bold text-sm px-6 py-3 rounded-lg transition-colors">
+        Meet Our Team <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ========== PROCESS ========== -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> How It Works <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold">Simple, Transparent Process</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="relative text-center step-line" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-14 h-14 rounded-2xl bg-gold flex items-center justify-center mx-auto mb-4 shadow-gold">
+          <i data-lucide="phone-call" class="w-6 h-6 text-navy"></i>
+        </div>
+        <div class="text-xs font-bold text-gold tracking-widest uppercase mb-2">Step 01</div>
+        <h3 class="font-bold text-navy mb-2">Initial Consultation</h3>
+        <p class="text-slate-500 text-sm">We listen to understand your financial situation, goals, and challenges.</p>
+      </div>
+
+      <div class="relative text-center step-line" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-14 h-14 rounded-2xl bg-navy flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="search" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div class="text-xs font-bold text-gold tracking-widest uppercase mb-2">Step 02</div>
+        <h3 class="font-bold text-navy mb-2">Financial Review</h3>
+        <p class="text-slate-500 text-sm">We analyze your financials to identify opportunities and potential risks.</p>
+      </div>
+
+      <div class="relative text-center step-line" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-14 h-14 rounded-2xl bg-navy flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="clipboard-list" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div class="text-xs font-bold text-gold tracking-widest uppercase mb-2">Step 03</div>
+        <h3 class="font-bold text-navy mb-2">Custom Strategy</h3>
+        <p class="text-slate-500 text-sm">We develop a tailored plan to minimize taxes and optimize your finances.</p>
+      </div>
+
+      <div class="relative text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-14 h-14 rounded-2xl bg-navy flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="repeat" class="w-6 h-6 text-gold"></i>
+        </div>
+        <div class="text-xs font-bold text-gold tracking-widest uppercase mb-2">Step 04</div>
+        <h3 class="font-bold text-navy mb-2">Ongoing Support</h3>
+        <p class="text-slate-500 text-sm">Year-round access to our team as your needs and goals evolve.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== INDUSTRIES ========== -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> Specialized Expertise <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold">Industries We Serve</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <a href="industries/hospitality.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="0">
+        <span class="text-3xl group-hover:scale-110 transition-transform">🍽</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Hospitality</span>
+      </a>
+      <a href="industries/manufacturing.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="60">
+        <span class="text-3xl group-hover:scale-110 transition-transform">⚙️</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Manufacturing</span>
+      </a>
+      <a href="industries/medical-practice.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="120">
+        <span class="text-3xl group-hover:scale-110 transition-transform">🏥</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Medical Practice</span>
+      </a>
+      <a href="industries/oil-gas.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="0">
+        <span class="text-3xl group-hover:scale-110 transition-transform">⛽</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Oil &amp; Gas</span>
+      </a>
+      <a href="industries/real-estate.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="60">
+        <span class="text-3xl group-hover:scale-110 transition-transform">🏠</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Real Estate</span>
+      </a>
+      <a href="industries/technology.html" class="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-200 hover:border-gold/50 hover:bg-navy hover:shadow-card-hover transition-all text-center" data-aos="zoom-in" data-aos-delay="120">
+        <span class="text-3xl group-hover:scale-110 transition-transform">💻</span>
+        <span class="text-sm font-semibold text-slate-600 group-hover:text-white transition-colors">Technology</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="py-20 bg-navy">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> Client Reviews <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-white font-bold">What Our Clients Say</h2>
+    </div>
+
+    <div class="swiper testimonial-swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper pb-12">
+
+        <div class="swiper-slide">
+          <div class="glass rounded-2xl p-7 h-full flex flex-col gap-4">
+            <div class="flex gap-1">
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed flex-1">"Grace CPA completely transformed how I handle my business finances. They found deductions I never knew existed and saved me thousands last year. I can't recommend them enough."</p>
+            <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center font-bold text-gold">MR</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Michael R.</div>
+                <div class="text-slate-400 text-xs">Restaurant Owner, Louisville</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="glass rounded-2xl p-7 h-full flex flex-col gap-4">
+            <div class="flex gap-1">
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed flex-1">"Switching to Grace CPA was the best business decision I made this year. They set up our QuickBooks, handle our payroll, and are always just a call away. Truly unparalleled service."</p>
+            <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center font-bold text-gold">SL</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Sarah L.</div>
+                <div class="text-slate-400 text-xs">Tech Startup Founder, Lexington</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="glass rounded-2xl p-7 h-full flex flex-col gap-4">
+            <div class="flex gap-1">
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed flex-1">"As a real estate investor with multiple properties, I needed a CPA who understood depreciation strategies and 1031 exchanges. Grace CPA delivers exactly that expertise every time."</p>
+            <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center font-bold text-gold">JD</div>
+              <div>
+                <div class="text-white font-semibold text-sm">James D.</div>
+                <div class="text-slate-400 text-xs">Real Estate Investor, Northern KY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="glass rounded-2xl p-7 h-full flex flex-col gap-4">
+            <div class="flex gap-1">
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 text-gold fill-current"></i>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed flex-1">"I've worked with three CPAs over the years and Grace CPA is by far the most responsive and thorough. They proactively reach out before tax season with planning advice. Outstanding."</p>
+            <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center font-bold text-gold">AP</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Angela P.</div>
+                <div class="text-slate-400 text-xs">Medical Practice Owner, Louisville</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== SERVICE AREAS ========== -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-4">
+        <div class="w-8 h-px bg-gold"></div> Where We Work <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-serif text-3xl lg:text-4xl text-navy font-bold">Service Areas</h2>
+      <p class="text-slate-500 mt-3">Serving businesses and individuals throughout Kentucky and Southern Indiana.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3" data-aos="fade-up" data-aos-delay="100">
+      <span class="flex items-center gap-2 bg-white border border-slate-200 hover:border-gold/60 hover:bg-gold/5 text-navy font-semibold text-sm px-5 py-3 rounded-full transition-all cursor-default shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> Louisville, KY
+      </span>
+      <span class="flex items-center gap-2 bg-white border border-slate-200 hover:border-gold/60 hover:bg-gold/5 text-navy font-semibold text-sm px-5 py-3 rounded-full transition-all cursor-default shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> Lexington, KY
+      </span>
+      <span class="flex items-center gap-2 bg-white border border-slate-200 hover:border-gold/60 hover:bg-gold/5 text-navy font-semibold text-sm px-5 py-3 rounded-full transition-all cursor-default shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> Jeffersonville, IN
+      </span>
+      <span class="flex items-center gap-2 bg-white border border-slate-200 hover:border-gold/60 hover:bg-gold/5 text-navy font-semibold text-sm px-5 py-3 rounded-full transition-all cursor-default shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> Northern Kentucky
+      </span>
+      <span class="flex items-center gap-2 bg-white border border-slate-200 hover:border-gold/60 hover:bg-gold/5 text-navy font-semibold text-sm px-5 py-3 rounded-full transition-all cursor-default shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold"></i> And Surrounding Areas
       </span>
     </div>
   </div>
+</section>
 
-  <!-- HEADER / NAV -->
-  <header id="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <a href="index.html">
-          <span class="logo-text">Grace <span class="logo-accent">CPA</span>, PSC</span>
-          <span class="logo-tagline">Louisville, KY &nbsp;·&nbsp; Certified Public Accountants</span>
-        </a>
-      </div>
-      <nav id="main-nav">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="has-dropdown">
-            <a href="#">Services ▾</a>
-            <ul class="dropdown">
-              <li><strong>Accounting</strong></li>
-              <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-              <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
-              <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
-              <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
-              <li><a href="services/outsourced-bookkeeping.html">Outsourced Accounting &amp; Bookkeeping</a></li>
-              <li><a href="services/payroll.html">Payroll Services</a></li>
-              <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
-              <li><strong>Tax</strong></li>
-              <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-              <li><a href="services/tax-planning.html">Tax Planning</a></li>
-            </ul>
-          </li>
-          <li class="has-dropdown">
-            <a href="#">Industries ▾</a>
-            <ul class="dropdown">
-              <li><a href="industries/hospitality.html">🍽 Hospitality</a></li>
-              <li><a href="industries/manufacturing.html">⚙️ Manufacturing</a></li>
-              <li><a href="industries/medical-practice.html">🏥 Medical Practice</a></li>
-              <li><a href="industries/oil-gas.html">⛽ Oil &amp; Gas</a></li>
-              <li><a href="industries/real-estate.html">🏠 Real Estate</a></li>
-              <li><a href="industries/technology.html">💻 Technology</a></li>
-            </ul>
-          </li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
-        </ul>
-      </nav>
-      <button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
-    </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-shapes">
-      <span></span><span></span><span></span>
+<!-- ========== CTA ========== -->
+<section class="py-24 bg-navy relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid opacity-50"></div>
+  <div class="absolute right-0 top-0 w-96 h-96 rounded-full bg-gold/5 blur-3xl"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center" data-aos="fade-up">
+    <div class="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-5">
+      <div class="w-8 h-px bg-gold"></div> Take the First Step <div class="w-8 h-px bg-gold"></div>
     </div>
-    <div class="container hero-content">
-      <div class="hero-eyebrow">Trusted CPA Firm · Louisville, KY</div>
-      <h1>Powerful Strategies to <em>Lower Your Taxes</em></h1>
-      <p>From small business accounting to complex tax planning, Grace CPA, PSC delivers accurate, personalized financial services built around your goals.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary">Get a Free Consultation</a>
-        <a href="services/tax-planning.html" class="btn btn-outline">Explore Tax Planning</a>
-      </div>
-      <p class="hero-note">No obligation · Response within 24 hours</p>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="container">
-      <div class="stats-inner">
-        <div class="stat-item">
-          <span class="stat-number">10+</span>
-          <span class="stat-label">Years of Experience</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">500+</span>
-          <span class="stat-label">Clients Served</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">9</span>
-          <span class="stat-label">Core Services</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">5+</span>
-          <span class="stat-label">Service Areas</span>
-        </div>
-      </div>
+    <h2 class="font-serif text-3xl lg:text-5xl text-white font-bold leading-tight mb-5">
+      Ready to Lower Your<br><span class="text-gold-gradient">Tax Burden?</span>
+    </h2>
+    <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+      Contact Grace CPA, PSC today for a no-obligation consultation. We're here to help you succeed financially.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-navy font-bold px-8 py-4 rounded-lg shadow-gold hover:shadow-none transition-all hover:-translate-y-0.5">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Schedule Free Consultation
+      </a>
+      <a href="tel:5026181677" class="inline-flex items-center gap-2 text-white border border-white/25 hover:border-white/60 hover:bg-white/10 font-semibold px-8 py-4 rounded-lg transition-all">
+        <i data-lucide="phone" class="w-4 h-4"></i> Call (502) 618-1677
+      </a>
     </div>
   </div>
+</section>
 
-  <!-- INTRO -->
-  <section class="section intro">
-    <div class="container">
-      <div class="intro-inner fade-in">
-        <h2>A CPA Firm That Actually Listens</h2>
-        <div class="intro-divider"><span>✦</span></div>
-        <p>At Grace CPA, PSC, listening is the foundation of our business. We take the time to get to know our clients so we can find practical ways to meet their accounting and tax needs, understand their struggles, and help them achieve their financial goals.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="section why-us bg-light">
-    <div class="container">
-      <h2 class="section-title fade-in">Why Choose Grace CPA?</h2>
-      <span class="title-divider fade-in fade-in-delay-1"></span>
-      <div class="cards">
-        <div class="card fade-in">
-          <div class="card-icon">📉</div>
-          <h3>Commitment to Lowering Taxes</h3>
-          <p>We develop powerful strategies tailored to your situation to minimize your tax burden legally and effectively.</p>
-        </div>
-        <div class="card fade-in fade-in-delay-1">
-          <div class="card-icon">🤝</div>
-          <h3>Unparalleled Customer Support</h3>
-          <p>Our team is dedicated to providing prompt, responsive support whenever you need us — no runaround, no delays.</p>
-        </div>
-        <div class="card fade-in fade-in-delay-2">
-          <div class="card-icon">✅</div>
-          <h3>Error-Free Tax Preparation</h3>
-          <p>Accuracy is our standard. Every return is carefully reviewed to ensure it is complete, compliant, and correct.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ========== FOOTER ========== -->
+<footer class="bg-navy-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/5">
 
-  <!-- ABOUT SNIPPET -->
-  <section class="section about-snippet">
-    <div class="container two-col">
-      <div class="col-text fade-in">
-        <span class="subtitle">About Our Firm</span>
-        <h2>Built on Relationships, Driven by Results</h2>
-        <p>From startups and entrepreneurs to established enterprises, we provide quality accounting services and strategic tax planning to all types of businesses. We also offer prompt and accurate income tax preparation for business owners and individuals.</p>
-        <ul class="check-list">
-          <li>Personalized service for every client</li>
-          <li>Proactive tax strategies that save you money</li>
-          <li>Experienced team with deep local knowledge</li>
-          <li>Serving Louisville, Lexington, and beyond</li>
-        </ul>
-        <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
-      </div>
-      <div class="col-image fade-in fade-in-delay-1">
-        <div class="placeholder-image">
-          <span>Add your team photo here</span>
-          <span style="font-size:.75rem;color:#c0cad8;">images/team.jpg</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section services bg-light">
-    <div class="container">
-      <h2 class="section-title fade-in">Our Services</h2>
-      <p class="title-sub fade-in">Comprehensive accounting and tax solutions for individuals and businesses.</p>
-      <span class="title-divider fade-in"></span>
-      <div class="services-grid">
-        <div class="service-item fade-in">
-          <h3>📊 Small Business Accounting</h3>
-          <p>Comprehensive accounting solutions designed for small businesses at every stage of growth.</p>
-          <a href="services/small-business-accounting.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-1">
-          <h3>💼 Business &amp; Financial Consulting</h3>
-          <p>Strategic financial guidance to help you make informed decisions and grow confidently.</p>
-          <a href="services/business-consulting.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-2">
-          <h3>☁️ Cloud Accounting Solutions</h3>
-          <p>Modern cloud-based accounting tools that give you real-time visibility into your finances.</p>
-          <a href="services/cloud-accounting.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in">
-          <h3>🏢 Business Incorporation</h3>
-          <p>We guide you through the incorporation process to set your business up for success.</p>
-          <a href="services/business-incorporation.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-1">
-          <h3>📒 Outsourced Bookkeeping</h3>
-          <p>Reliable, accurate bookkeeping so you can focus on running your business.</p>
-          <a href="services/outsourced-bookkeeping.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-2">
-          <h3>💳 Payroll Services</h3>
-          <p>Timely and accurate payroll processing to keep your employees and compliance on track.</p>
-          <a href="services/payroll.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in">
-          <h3>🖥 QuickBooks Setup &amp; Support</h3>
-          <p>Expert QuickBooks configuration and ongoing support for your accounting software.</p>
-          <a href="services/quickbooks.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-1">
-          <h3>📋 Tax Preparation</h3>
-          <p>Accurate, efficient tax preparation for individuals and businesses of all sizes.</p>
-          <a href="services/tax-preparation.html">Learn More →</a>
-        </div>
-        <div class="service-item fade-in fade-in-delay-2">
-          <h3>🎯 Tax Planning</h3>
-          <p>Forward-looking tax strategies to help you keep more of what you earn.</p>
-          <a href="services/tax-planning.html">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INDUSTRIES -->
-  <section class="section industries">
-    <div class="container">
-      <h2 class="section-title fade-in">Industries We Serve</h2>
-      <span class="title-divider fade-in"></span>
-      <div class="industry-grid">
-        <a href="industries/hospitality.html" class="industry-card fade-in">
-          <span class="ind-icon">🍽</span>Hospitality
-        </a>
-        <a href="industries/manufacturing.html" class="industry-card fade-in fade-in-delay-1">
-          <span class="ind-icon">⚙️</span>Manufacturing
-        </a>
-        <a href="industries/medical-practice.html" class="industry-card fade-in fade-in-delay-2">
-          <span class="ind-icon">🏥</span>Medical Practice
-        </a>
-        <a href="industries/oil-gas.html" class="industry-card fade-in">
-          <span class="ind-icon">⛽</span>Oil &amp; Gas
-        </a>
-        <a href="industries/real-estate.html" class="industry-card fade-in fade-in-delay-1">
-          <span class="ind-icon">🏠</span>Real Estate
-        </a>
-        <a href="industries/technology.html" class="industry-card fade-in fade-in-delay-2">
-          <span class="ind-icon">💻</span>Technology
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICE AREAS -->
-  <section class="section service-areas bg-light">
-    <div class="container center fade-in">
-      <h2 class="section-title">Service Areas</h2>
-      <span class="title-divider"></span>
-      <p>We proudly serve clients throughout Kentucky and Southern Indiana, including:</p>
-      <div class="area-list">
-        <span>📍 Louisville, KY</span>
-        <span>📍 Lexington, KY</span>
-        <span>📍 Jeffersonville, IN</span>
-        <span>📍 Northern Kentucky</span>
-        <span>📍 And Surrounding Areas</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="section cta-banner">
-    <div class="container center">
-      <h2 class="fade-in">Ready to Lower Your Tax Burden?</h2>
-      <p class="fade-in fade-in-delay-1">Contact Grace CPA, PSC today for a no-obligation consultation. We're here to help you succeed financially.</p>
-      <div class="cta-actions fade-in fade-in-delay-2">
-        <a href="contact.html" class="btn btn-primary">Contact Us Today</a>
-        <a href="tel:5026181677" class="btn btn-outline">📞 Call (502) 618-1677</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <span class="footer-logo">Grace <span>CPA</span>, PSC</span>
-        <p class="footer-desc">Trusted certified public accountants serving Louisville, KY and surrounding areas since our founding.</p>
-        <div class="footer-contact-item">
-          <span class="fc-icon">📍</span>
+    <div>
+      <div class="font-serif text-xl text-white font-bold mb-3">Grace <span class="text-gold">CPA</span>, PSC</div>
+      <p class="text-sm leading-relaxed text-slate-500 mb-5">Trusted certified public accountants serving Louisville, KY and surrounding areas.</p>
+      <div class="space-y-2.5 text-sm">
+        <div class="flex items-start gap-2.5 text-slate-500">
+          <i data-lucide="map-pin" class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"></i>
           <span>3940 Bardstown Road, Suite 1B<br>Louisville, KY 40218</span>
         </div>
-        <div class="footer-contact-item">
-          <span class="fc-icon">📞</span>
-          <span><a href="tel:5026181677">(502) 618-1677</a><br><a href="tel:8595396306">(859) 539-6306</a></span>
+        <a href="tel:5026181677" class="flex items-center gap-2.5 text-slate-500 hover:text-gold-light transition-colors">
+          <i data-lucide="phone" class="w-4 h-4 text-gold flex-shrink-0"></i>(502) 618-1677
+        </a>
+        <a href="tel:8595396306" class="flex items-center gap-2.5 text-slate-500 hover:text-gold-light transition-colors">
+          <i data-lucide="phone" class="w-4 h-4 text-gold flex-shrink-0"></i>(859) 539-6306
+        </a>
+        <a href="mailto:dtiwari@grace-cpa.com" class="flex items-center gap-2.5 text-slate-500 hover:text-gold-light transition-colors">
+          <i data-lucide="mail" class="w-4 h-4 text-gold flex-shrink-0"></i>dtiwari@grace-cpa.com
+        </a>
+        <div class="flex items-center gap-2.5 text-slate-500">
+          <i data-lucide="clock" class="w-4 h-4 text-gold flex-shrink-0"></i>Mon–Fri: 9:00 AM – 5:00 PM
         </div>
-        <div class="footer-contact-item">
-          <span class="fc-icon">✉️</span>
-          <a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a>
-        </div>
-        <div class="footer-contact-item">
-          <span class="fc-icon">🕐</span>
-          <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog &amp; Resources</a></li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Accounting Services</h4>
-        <ul>
-          <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-          <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
-          <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
-          <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
-          <li><a href="services/outsourced-bookkeeping.html">Outsourced Bookkeeping</a></li>
-          <li><a href="services/payroll.html">Payroll Services</a></li>
-          <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Tax Services</h4>
-        <ul>
-          <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-          <li><a href="services/tax-planning.html">Tax Planning</a></li>
-        </ul>
-        <h4 style="margin-top:1.5rem;">Industries</h4>
-        <ul>
-          <li><a href="industries/hospitality.html">Hospitality</a></li>
-          <li><a href="industries/manufacturing.html">Manufacturing</a></li>
-          <li><a href="industries/medical-practice.html">Medical Practice</a></li>
-          <li><a href="industries/real-estate.html">Real Estate</a></li>
-          <li><a href="industries/technology.html">Technology</a></li>
-        </ul>
       </div>
     </div>
-    <div class="footer-bottom container">
-      <p>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</p>
-      <p><a href="contact.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="contact.html">Disclaimer</a></p>
+
+    <div>
+      <h4 class="text-white text-xs font-bold tracking-widest uppercase mb-4">Quick Links</h4>
+      <ul class="space-y-2.5">
+        <li><a href="index.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Home</a></li>
+        <li><a href="about.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>About Us</a></li>
+        <li><a href="contact.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Contact</a></li>
+        <li><a href="blog.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Blog &amp; Resources</a></li>
+        <li><a href="service-areas.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Service Areas</a></li>
+      </ul>
     </div>
-  </footer>
 
-  <!-- SCROLL TO TOP -->
-  <button id="scroll-top" title="Back to top">↑</button>
+    <div>
+      <h4 class="text-white text-xs font-bold tracking-widest uppercase mb-4">Accounting</h4>
+      <ul class="space-y-2.5">
+        <li><a href="services/small-business-accounting.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Small Business Accounting</a></li>
+        <li><a href="services/business-consulting.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Business Consulting</a></li>
+        <li><a href="services/cloud-accounting.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Cloud Accounting</a></li>
+        <li><a href="services/outsourced-bookkeeping.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Outsourced Bookkeeping</a></li>
+        <li><a href="services/payroll.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Payroll Services</a></li>
+        <li><a href="services/quickbooks.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>QuickBooks Support</a></li>
+      </ul>
+    </div>
 
-  <script src="script.js"></script>
+    <div>
+      <h4 class="text-white text-xs font-bold tracking-widest uppercase mb-4">Tax &amp; Industries</h4>
+      <ul class="space-y-2.5">
+        <li><a href="services/tax-preparation.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Tax Preparation</a></li>
+        <li><a href="services/tax-planning.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Tax Planning</a></li>
+        <li><a href="services/business-incorporation.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Business Incorporation</a></li>
+      </ul>
+      <h4 class="text-white text-xs font-bold tracking-widest uppercase mt-6 mb-4">Industries</h4>
+      <ul class="space-y-2.5">
+        <li><a href="industries/hospitality.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Hospitality</a></li>
+        <li><a href="industries/medical-practice.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Medical Practice</a></li>
+        <li><a href="industries/real-estate.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Real Estate</a></li>
+        <li><a href="industries/technology.html" class="text-sm text-slate-500 hover:text-gold-light transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-gold"></i>Technology</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-5 flex flex-wrap justify-between items-center gap-3 text-xs text-slate-600">
+    <span>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</span>
+    <div class="flex gap-4">
+      <a href="contact.html" class="hover:text-gold-light transition-colors">Privacy Policy</a>
+      <a href="contact.html" class="hover:text-gold-light transition-colors">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button
+  id="scroll-top"
+  class="fixed bottom-6 right-6 w-11 h-11 rounded-full bg-navy-mid text-white flex items-center justify-center shadow-card-hover z-50 opacity-0 pointer-events-none translate-y-3 hover:bg-gold hover:text-navy transition-all"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  title="Back to top"
+>
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
+
+
+<!-- ========== SCRIPTS ========== -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+<script>
+  // Lucide icons
+  lucide.createIcons();
+
+  // AOS
+  AOS.init({ once: true, offset: 60, duration: 650, easing: 'ease-out-cubic' });
+
+  // Swiper
+  new Swiper('.testimonial-swiper', {
+    loop: true,
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    spaceBetween: 24,
+    grabCursor: true,
+    breakpoints: {
+      640:  { slidesPerView: 1 },
+      900:  { slidesPerView: 2 },
+      1100: { slidesPerView: 3 },
+    }
+  });
+
+  // CountUp – triggers when stats bar enters view
+  const statEls = document.querySelectorAll('[data-countup]');
+  if (statEls.length) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const end = parseInt(el.dataset.countup);
+        const suffix = el.dataset.suffix || '';
+        new countUp.CountUp(el, end, {
+          duration: 2.2,
+          suffix,
+          useEasing: true,
+        }).start();
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => obs.observe(el));
+  }
+
+  // Scroll-to-top visibility
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  // Header shadow on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-md', window.scrollY > 30);
+  }, { passive: true });
+</script>
+
 </body>
 </html>

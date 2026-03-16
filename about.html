@@ -3,171 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About – Grace CPA, PSC</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <title>About Us – Grace CPA, PSC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950:'#060d1a', DEFAULT:'#0f1f3d', mid:'#1a3a6b', light:'#2a5298' },
+            gold: { DEFAULT:'#c9a03e', light:'#e8c96a', pale:'#fdf6e3' },
+          },
+          fontFamily: {
+            sans: ['Inter','system-ui','sans-serif'],
+            serif: ['"Playfair Display"','Georgia','serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .text-gold-gradient { background: linear-gradient(135deg,#c9a03e,#e8c96a,#c9a03e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    [x-cloak] { display:none!important; }
+  </style>
 </head>
-<body>
+<body class="font-sans text-slate-700 bg-white antialiased">
 
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
-      <span>
-        <a href="tel:5026181677">(502) 618-1677</a> &nbsp;|&nbsp;
-        <a href="tel:8595396306">(859) 539-6306</a>
-      </span>
+  <!-- Header injected by components.js -->
+  <div id="site-header"></div>
+
+  <!-- PAGE HERO -->
+  <section class="relative overflow-hidden py-20 text-center" style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 100%)">
+    <div class="relative z-10 max-w-3xl mx-auto px-6">
+      <div class="text-xs font-bold tracking-widest uppercase mb-3" style="color:#c9a03e">About Our Firm</div>
+      <h1 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-3">About Grace CPA, PSC</h1>
+      <p class="text-slate-300 text-base">A trusted CPA firm built on listening, integrity, and results.</p>
     </div>
-  </div>
+  </section>
 
-  <header id="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <a href="index.html">
-          <span class="logo-text">Grace <span class="logo-accent">CPA</span>, PSC</span>
-        </a>
-      </div>
-      <nav id="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li class="has-dropdown">
-            <a href="#">Services ▾</a>
-            <ul class="dropdown">
-              <li><strong>Accounting</strong></li>
-              <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-              <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
-              <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
-              <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
-              <li><a href="services/outsourced-bookkeeping.html">Outsourced Accounting &amp; Bookkeeping</a></li>
-              <li><a href="services/payroll.html">Payroll Services</a></li>
-              <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
-              <li><strong>Tax</strong></li>
-              <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-              <li><a href="services/tax-planning.html">Tax Planning</a></li>
-            </ul>
+  <!-- Section 1: Who We Are -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
+      <div data-aos="fade-right">
+        <div class="text-xs font-bold tracking-widest uppercase mb-3" style="color:#c9a03e">Our Story</div>
+        <h2 class="font-serif text-2xl lg:text-3xl font-bold mb-6" style="color:#0f1f3d">Who We Are</h2>
+        <p class="text-slate-600 leading-relaxed mb-4">Grace CPA, PSC is a full-service certified public accounting firm headquartered in Louisville, Kentucky. We serve individuals, small businesses, and mid-sized companies across a wide range of industries, providing tailored accounting, tax, and financial consulting services that help our clients achieve their goals.</p>
+        <p class="text-slate-600 leading-relaxed mb-4">From our founding, we have believed that great accounting is more than numbers — it's about understanding each client's unique situation and delivering solutions that make a real difference. Our team brings deep technical expertise and a genuine commitment to client success to every engagement.</p>
+        <p class="text-slate-600 leading-relaxed mb-6">Whether you're a startup looking for guidance on business formation, an established business needing reliable bookkeeping, or an individual seeking to minimize your tax burden, Grace CPA is here to help you move forward with confidence.</p>
+
+        <div class="text-xs font-bold tracking-widest uppercase mb-3 mt-8" style="color:#c9a03e">What Sets Us Apart</div>
+        <ul class="space-y-3 mt-4">
+          <li class="flex items-start gap-3 text-sm text-slate-600">
+            <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(201,160,62,.15)">
+              <i data-lucide="check" class="w-3 h-3" style="color:#c9a03e"></i>
+            </div>
+            Client-Focused Approach
           </li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="flex items-start gap-3 text-sm text-slate-600">
+            <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(201,160,62,.15)">
+              <i data-lucide="check" class="w-3 h-3" style="color:#c9a03e"></i>
+            </div>
+            Accurate &amp; Reliable Work
+          </li>
+          <li class="flex items-start gap-3 text-sm text-slate-600">
+            <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(201,160,62,.15)">
+              <i data-lucide="check" class="w-3 h-3" style="color:#c9a03e"></i>
+            </div>
+            Results-Driven Strategies
+          </li>
+          <li class="flex items-start gap-3 text-sm text-slate-600">
+            <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(201,160,62,.15)">
+              <i data-lucide="check" class="w-3 h-3" style="color:#c9a03e"></i>
+            </div>
+            Serving Louisville &amp; Beyond
+          </li>
         </ul>
-      </nav>
-      <button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
-    </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h1>About Grace CPA, PSC</h1>
-      <p>A trusted CPA firm built on listening, integrity, and results.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container two-col">
-      <div class="col-text">
-        <h2>Who We Are</h2>
-        <p>Grace CPA, PSC is a certified public accounting firm based in Louisville, Kentucky. We serve individuals, small businesses, and established enterprises throughout the Louisville metro area and beyond.</p>
-        <p>At the heart of everything we do is a simple belief: listening is the foundation of great service. We take the time to truly understand our clients — their goals, their challenges, and their vision for the future — so we can deliver accounting and tax solutions that actually make a difference.</p>
-        <p>From startups and entrepreneurs to established enterprises, we provide quality accounting services and strategic tax planning to all types of businesses. We also offer prompt and accurate income tax preparation for business owners and individuals.</p>
       </div>
-      <div class="col-image">
-        <div class="placeholder-image" style="height:320px;">Team Photo</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-light">
-    <div class="container">
-      <h2 class="section-title">Our Mission</h2>
-      <p class="center" style="max-width:700px;margin:0 auto 32px;">We are committed to helping our clients lower their tax burden, maintain accurate financial records, and make sound business decisions — all backed by unparalleled customer support and error-free work.</p>
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">&#127919;</div>
-          <h3>Client-Focused</h3>
-          <p>Every recommendation we make starts with understanding your unique situation and goals.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">&#128203;</div>
-          <h3>Accurate &amp; Reliable</h3>
-          <p>Precision in every return, every report, and every recommendation we deliver.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">&#128200;</div>
-          <h3>Results-Driven</h3>
-          <p>We measure success by the financial improvements and peace of mind we bring to our clients.</p>
+      <div data-aos="fade-left">
+        <div class="rounded-2xl flex flex-col items-center justify-center gap-3 text-slate-400" style="background:#f1f5f9;height:300px;border:2px dashed #e2e8f0">
+          <i data-lucide="image" class="w-10 h-10" style="color:#cbd5e1"></i>
+          <span class="text-sm">Add your photo here</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Meet the Team</h2>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo">Photo</div>
-          <h3>Dipendra Tiwari</h3>
-          <div class="role">CPA, Managing Principal</div>
-          <p>Dipendra founded Grace CPA, PSC with the vision of providing personalized, high-quality accounting and tax services to the Louisville community and beyond.</p>
+  <!-- Section 2: Meet the Team -->
+  <section class="py-20" style="background:#f8fafc">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="text-xs font-bold tracking-widest uppercase mb-3" style="color:#c9a03e">Our People</div>
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold mb-12" style="color:#0f1f3d">Meet the Team</h2>
+
+      <div class="max-w-sm mx-auto bg-white rounded-2xl shadow-md p-10 text-center" data-aos="fade-up">
+        <div class="w-24 h-24 rounded-full bg-slate-200 mx-auto mb-4 flex items-center justify-center">
+          <i data-lucide="user" class="w-10 h-10" style="color:#94a3b8"></i>
         </div>
-        <!-- Add more team members here -->
+        <h3 class="font-serif text-xl font-bold mb-1" style="color:#0f1f3d">Dipendra Tiwari</h3>
+        <div class="text-sm font-semibold mb-4" style="color:#c9a03e">CPA, Managing Principal</div>
+        <p class="text-slate-600 text-sm leading-relaxed">Dipendra founded Grace CPA, PSC with a clear vision: to offer personalized, high-quality accounting and tax services that treat every client as a priority — not a number. With years of experience serving small businesses and individuals, Dipendra brings a practical, results-oriented mindset to every client relationship.</p>
       </div>
     </div>
   </section>
 
-  <section class="section cta-banner">
-    <div class="container center">
-      <h2>Ready to Work With Us?</h2>
-      <p>Contact us today to schedule a consultation and see how Grace CPA, PSC can help you.</p>
-      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+  <!-- CTA Section -->
+  <section class="py-20 text-center" style="background:#0f1f3d">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
+      <p class="text-slate-400 mb-8">Contact Grace CPA, PSC today for a no-obligation consultation.</p>
+      <a href="./contact.html" class="inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-lg" style="background:#c9a03e;color:#0f1f3d">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Schedule Free Consultation
+      </a>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h4>Grace CPA, PSC</h4>
-        <p>3940 Bardstown Road<br>Suite 1B<br>Louisville, KY 40218</p>
-        <p><a href="tel:5026181677">(502) 618-1677</a><br><a href="tel:8595396306">(859) 539-6306</a></p>
-        <p><a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a></p>
-        <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="service-areas.html">Service Areas</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
-          <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
-          <li><a href="services/tax-planning.html">Tax Planning</a></li>
-          <li><a href="services/payroll.html">Payroll Services</a></li>
-          <li><a href="services/outsourced-bookkeeping.html">Outsourced Bookkeeping</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Industries</h4>
-        <ul>
-          <li><a href="industries/hospitality.html">Hospitality</a></li>
-          <li><a href="industries/manufacturing.html">Manufacturing</a></li>
-          <li><a href="industries/medical-practice.html">Medical Practice</a></li>
-          <li><a href="industries/real-estate.html">Real Estate</a></li>
-          <li><a href="industries/technology.html">Technology</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</p>
-    </div>
-  </footer>
+  <!-- Footer injected by components.js -->
+  <div id="site-footer"></div>
 
-  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script>
+    window.SITE_BASE = './';
+    window.SITE_PAGE = 'about';
+  </script>
+  <script src="./components.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      if (window.lucide) lucide.createIcons();
+      AOS.init({ once: true, offset: 60, duration: 650 });
+    });
+  </script>
 </body>
 </html>
