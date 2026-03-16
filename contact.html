@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Grace CPA, PSC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
+      <span>
+        <a href="tel:5026181677">(502) 618-1677</a> &nbsp;|&nbsp;
+        <a href="tel:8595396306">(859) 539-6306</a>
+      </span>
+    </div>
+  </div>
+
+  <header id="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-text">Grace <span class="logo-accent">CPA</span>, PSC</span>
+        </a>
+      </div>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="has-dropdown">
+            <a href="#">Services ▾</a>
+            <ul class="dropdown">
+              <li><strong>Accounting</strong></li>
+              <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
+              <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
+              <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
+              <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
+              <li><a href="services/outsourced-bookkeeping.html">Outsourced Accounting &amp; Bookkeeping</a></li>
+              <li><a href="services/payroll.html">Payroll Services</a></li>
+              <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
+              <li><strong>Tax</strong></li>
+              <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
+              <li><a href="services/tax-planning.html">Tax Planning</a></li>
+            </ul>
+          </li>
+          <li><a href="service-areas.html">Service Areas</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Reach out today to get started.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p><strong>Phone:</strong><br>
+          <a href="tel:5026181677">(502) 618-1677</a><br>
+          <a href="tel:8595396306">(859) 539-6306</a>
+        </p>
+        <p><strong>Email:</strong><br>
+          <a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a>
+        </p>
+        <p><strong>Address:</strong><br>
+          3940 Bardstown Road, Suite 1B<br>
+          Louisville, KY 40218
+        </p>
+        <p><strong>Office Hours:</strong><br>
+          Monday – Friday: 9:00 AM – 5:00 PM
+        </p>
+        <br>
+        <!-- Google Maps embed placeholder -->
+        <div style="background:#eef1f7;border:1px solid #dde3ec;border-radius:6px;height:220px;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px;">
+          Google Map – 3940 Bardstown Rd, Louisville KY<br>
+          <small>(replace with iframe embed)</small>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">-- Select a Service --</option>
+              <option>Small Business Accounting</option>
+              <option>Business &amp; Financial Consulting</option>
+              <option>Cloud Accounting Solutions</option>
+              <option>Business Incorporation</option>
+              <option>Outsourced Accounting &amp; Bookkeeping</option>
+              <option>Payroll Services</option>
+              <option>QuickBooks Setup &amp; Support</option>
+              <option>Tax Preparation</option>
+              <option>Tax Planning</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Grace CPA, PSC</h4>
+        <p>3940 Bardstown Road<br>Suite 1B<br>Louisville, KY 40218</p>
+        <p><a href="tel:5026181677">(502) 618-1677</a><br><a href="tel:8595396306">(859) 539-6306</a></p>
+        <p><a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a></p>
+        <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="service-areas.html">Service Areas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
+          <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
+          <li><a href="services/tax-planning.html">Tax Planning</a></li>
+          <li><a href="services/payroll.html">Payroll Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries/hospitality.html">Hospitality</a></li>
+          <li><a href="industries/manufacturing.html">Manufacturing</a></li>
+          <li><a href="industries/medical-practice.html">Medical Practice</a></li>
+          <li><a href="industries/real-estate.html">Real Estate</a></li>
+          <li><a href="industries/technology.html">Technology</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

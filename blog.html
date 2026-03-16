@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – Grace CPA, PSC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+    .blog-card { background: #fff; border: 1px solid #dde3ec; border-radius: 6px; overflow: hidden; transition: box-shadow .2s; }
+    .blog-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+    .blog-card-image { background: #eef1f7; height: 180px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 13px; }
+    .blog-card-body { padding: 24px; }
+    .blog-card-meta { font-size: 12px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
+    .blog-card h3 { color: #1a3c6e; font-size: 1.05rem; margin-bottom: 10px; }
+    .blog-card p { font-size: .9rem; color: #555; margin-bottom: 14px; }
+    .blog-card a.read-more { font-size: .88rem; font-weight: 700; color: #c8a951; }
+    .blog-card a.read-more:hover { color: #1a3c6e; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
+      <span>
+        <a href="tel:5026181677">(502) 618-1677</a> &nbsp;|&nbsp;
+        <a href="tel:8595396306">(859) 539-6306</a>
+      </span>
+    </div>
+  </div>
+
+  <header id="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html"><span class="logo-text">Grace <span class="logo-accent">CPA</span>, PSC</span></a>
+      </div>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="has-dropdown">
+            <a href="#">Services ▾</a>
+            <ul class="dropdown">
+              <li><strong>Accounting</strong></li>
+              <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
+              <li><a href="services/business-consulting.html">Business &amp; Financial Consulting</a></li>
+              <li><a href="services/cloud-accounting.html">Cloud Accounting Solutions</a></li>
+              <li><a href="services/business-incorporation.html">Business Incorporation</a></li>
+              <li><a href="services/outsourced-bookkeeping.html">Outsourced Accounting &amp; Bookkeeping</a></li>
+              <li><a href="services/payroll.html">Payroll Services</a></li>
+              <li><a href="services/quickbooks.html">QuickBooks Setup &amp; Support</a></li>
+              <li><strong>Tax</strong></li>
+              <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
+              <li><a href="services/tax-planning.html">Tax Planning</a></li>
+            </ul>
+          </li>
+          <li><a href="service-areas.html">Service Areas</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Blog &amp; Resources</h1>
+      <p>Tax tips, accounting insights, and financial guidance from the Grace CPA team.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid">
+        <!-- Sample blog posts — replace or add more as needed -->
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Tax Planning &bull; January 2024</div>
+            <h3>5 Year-End Tax Strategies Every Small Business Owner Should Know</h3>
+            <p>As the year closes, there are smart moves you can make to reduce your tax bill. Here are five strategies to consider before December 31st.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Bookkeeping &bull; February 2024</div>
+            <h3>Why Clean Books Are the Foundation of a Healthy Business</h3>
+            <p>Messy financials don't just cause stress at tax time — they can cost you real money. Here's why accurate bookkeeping matters year-round.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Business Formation &bull; March 2024</div>
+            <h3>LLC vs. S-Corp: Which Business Structure Is Right for You?</h3>
+            <p>Choosing the right entity type affects your taxes, liability, and flexibility. We break down the key differences to help you decide.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Payroll &bull; April 2024</div>
+            <h3>Common Payroll Mistakes and How to Avoid Them</h3>
+            <p>Payroll errors can trigger IRS penalties and damage employee trust. Learn the most common mistakes — and how to prevent them.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Cloud Accounting &bull; May 2024</div>
+            <h3>Is QuickBooks Online Right for Your Business?</h3>
+            <p>Cloud-based accounting has never been more accessible. Find out if QuickBooks Online is a good fit and how to make the switch smoothly.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-image">Blog Image</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">Real Estate &bull; June 2024</div>
+            <h3>Tax Benefits of Real Estate Investing You May Be Missing</h3>
+            <p>Real estate offers some of the best tax advantages available — but only if you know how to use them. Here's what every investor should know.</p>
+            <a href="contact.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-banner">
+    <div class="container center">
+      <h2>Have a Tax or Accounting Question?</h2>
+      <p>Our team is here to help. Reach out today for a consultation.</p>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Grace CPA, PSC</h4>
+        <p>3940 Bardstown Road<br>Suite 1B<br>Louisville, KY 40218</p>
+        <p><a href="tel:5026181677">(502) 618-1677</a><br><a href="tel:8595396306">(859) 539-6306</a></p>
+        <p><a href="mailto:dtiwari@grace-cpa.com">dtiwari@grace-cpa.com</a></p>
+        <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="service-areas.html">Service Areas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services/small-business-accounting.html">Small Business Accounting</a></li>
+          <li><a href="services/tax-preparation.html">Tax Preparation</a></li>
+          <li><a href="services/tax-planning.html">Tax Planning</a></li>
+          <li><a href="services/payroll.html">Payroll Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries/hospitality.html">Hospitality</a></li>
+          <li><a href="industries/manufacturing.html">Manufacturing</a></li>
+          <li><a href="industries/medical-practice.html">Medical Practice</a></li>
+          <li><a href="industries/real-estate.html">Real Estate</a></li>
+          <li><a href="industries/technology.html">Technology</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Grace CPA, PSC. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
